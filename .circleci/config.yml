@@ -1,0 +1,34 @@
+version: 2.1
+
+orbs: 
+  aws-cli: circleci/aws-cli@3.1.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/node:20.13.1
+    steps:
+      - checkout
+      - aws-cli/setup
+      - setup_remote_docker
+      - run:
+          name: Test
+          command: |
+            npm install
+            npm run lint
+            npm test
+      - run:
+          name: Build and release
+          command: |
+            export IMAGE_URL=833465769753.dkr.ecr.ca-central-1.amazonaws.com/cryptogator-payments-validator
+            export FUNCTION_NAME=cryptogator-payments-validator
+            aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin 833465769753.dkr.ecr.$AWS_REGION.amazonaws.com
+            docker build -t $IMAGE_URL .
+            docker push $IMAGE_URL
+            aws lambda update-function-code --region ca-central-1 --function-name $FUNCTION_NAME --image-uri $IMAGE_URL:latest
+
+workflows:
+  version: 2
+  build-workflow:
+    jobs:
+      - build
