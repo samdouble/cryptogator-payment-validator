@@ -1,0 +1,23 @@
+version: "2"
+
+services:
+    validator:
+        container_name: validator
+        build:
+            context: .
+        restart: always
+        ports:
+            - 8000:8000
+        volumes:
+            - ./validator:/validator
+            - ./validator/node_modules:/validator/node_modules
+
+    validator-test:
+        container_name: validator-test
+        build:
+            context: .
+            dockerfile: Dockerfile.test
+        restart: always
+        volumes:
+            - ./validator:/validator
+            - ./validator/node_modules:/validator/node_modules

@@ -1,3 +1,9 @@
+node_modules
+coverage
+.nyc_output
+build
+*.env
+
 # Logs
 logs
 *.log
