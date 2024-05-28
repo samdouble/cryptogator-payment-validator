@@ -3,7 +3,7 @@
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "lib": ["dom", "dom.iterable", "esnext", "es5", "es6"],
+    "lib": ["esnext", "es5", "es6"],
     "module": "CommonJS",
     "noImplicitAny": false,
     "outDir": "build",
