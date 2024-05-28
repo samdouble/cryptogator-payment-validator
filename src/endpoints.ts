@@ -1,6 +1,7 @@
 import axios from 'axios';
 import http from 'http';
 import https from 'https';
+import queryString from 'query-string';
 import contractAddresses from './contractAddresses';
 
 const ApiClient = axios.create({
@@ -27,11 +28,7 @@ export const fetchErc20TransactionForAddress = async (erc20Token, address, filte
     sort: 'asc',
   };
 
-  const pFilter = filterWithCredentials && `filter=${JSON.stringify({filterWithCredentials})}`;
-  const query = [pFilter]
-    .filter(q => !!q)
-    .join('&');
-
+  const query = filterWithCredentials && queryString.stringify(filterWithCredentials);
   return ApiClient
     .get(`${process.env.ETHERSCAN_API_SERVER}/api${query && `?${query}`}`)
     .then((res: any) => res)
@@ -51,11 +48,7 @@ export const fetchLogsForAddress = async (address, filter = {}) => {
     // offset:,
   };
 
-  const pFilter = filterWithCredentials && `filter=${JSON.stringify({filterWithCredentials})}`;
-  const query = [pFilter]
-    .filter(q => !!q)
-    .join('&');
-
+  const query = filterWithCredentials && queryString.stringify(filterWithCredentials);
   return ApiClient
     .get(`${process.env.ETHERSCAN_API_SERVER}/api${query && `?${query}`}`)
     .then((res: any) => res)
