@@ -31,7 +31,7 @@ export const fetchErc20TransactionForAddress = async (erc20Token, address, filte
   const query = filterWithCredentials && queryString.stringify(filterWithCredentials);
   return ApiClient
     .get(`${process.env.ETHERSCAN_API_SERVER}/api${query && `?${query}`}`)
-    .then((res: any) => res)
+    .then((res: any) => res.data)
     .catch(error => console.error(`Fetch events error ${error}`));
 }
 
@@ -51,6 +51,6 @@ export const fetchLogsForAddress = async (address, filter = {}) => {
   const query = filterWithCredentials && queryString.stringify(filterWithCredentials);
   return ApiClient
     .get(`${process.env.ETHERSCAN_API_SERVER}/api${query && `?${query}`}`)
-    .then((res: any) => res)
+    .then((res: any) => res.data)
     .catch(error => console.error(`Fetch events error ${error}`));
 }
