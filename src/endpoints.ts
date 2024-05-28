@@ -1,7 +1,7 @@
 import axios from 'axios';
 import http from 'http';
 import https from 'https';
-import queryString from 'query-string';
+import queryString from 'node:querystring';
 import contractAddresses from './contractAddresses';
 
 const ApiClient = axios.create({
