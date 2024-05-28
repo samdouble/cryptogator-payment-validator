@@ -54,3 +54,8 @@ export const fetchLogsForAddress = async (address, filter = {}) => {
     .then((res: any) => res.data)
     .catch(error => console.error(`Fetch events error ${error}`));
 }
+
+export default {
+  fetchErc20TransactionForAddress,
+  fetchLogsForAddress,
+}

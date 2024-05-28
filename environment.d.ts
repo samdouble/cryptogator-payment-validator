@@ -6,6 +6,8 @@ declare global {
       ETHERSCAN_API_SERVER: string;
       ETHERSCAN_API_TOKEN: string;
       NODE_ENV: 'development' | 'production';
+      POLYGONSCAN_API_SERVER: string;
+      POLYGONSCAN_API_TOKEN: string;
     }
   }
 }
