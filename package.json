@@ -5,6 +5,7 @@
   "description": "CryptoGator's payments validator",
   "license": "ISC",
   "main": "src/app.ts",
+  "type": "module",
   "scripts": {
     "audit": "npm-audit",
     "build": "tsc",
