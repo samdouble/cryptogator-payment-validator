@@ -34,7 +34,7 @@ export const fetchErc20TransactionForAddress = async (erc20Token, address, filte
 
   return ApiClient
     .get(`${process.env.ETHERSCAN_API_SERVER}/api${query && `?${query}`}`)
-    .then((res: any) => res.result)
+    .then((res: any) => res)
     .catch(error => console.error(`Fetch events error ${error}`));
 }
 
@@ -58,6 +58,6 @@ export const fetchLogsForAddress = async (address, filter = {}) => {
 
   return ApiClient
     .get(`${process.env.ETHERSCAN_API_SERVER}/api${query && `?${query}`}`)
-    .then((res: any) => res.result)
+    .then((res: any) => res)
     .catch(error => console.error(`Fetch events error ${error}`));
 }
