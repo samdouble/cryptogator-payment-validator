@@ -1,18 +1,31 @@
 import { Context, APIGatewayProxyResult, APIGatewayEvent } from 'aws-lambda';
-import { fetchErc20TransactionForAddress, fetchLogsForAddress } from './endpoints';
+import etherscanEndpoints from './etherscan';
+import polygonscanEndpoints from './polygonscan';
 
 export const handler = async (event: APIGatewayEvent, context: Context): Promise<APIGatewayProxyResult> => {
-  const [transactionsUsdc, transactionsUsdt, logsUsdc, logsUsdt] = await Promise.all([
-    fetchErc20TransactionForAddress('usdc', process.env.ADDRESS_USDC),
-    fetchErc20TransactionForAddress('usdt', process.env.ADDRESS_USDT),
-    fetchLogsForAddress(process.env.ADDRESS_USDC),
-    fetchLogsForAddress(process.env.ADDRESS_USDT),
+  const [etherscanTransactionsUsdc, etherscanTransactionsUsdt, etherscanLogsUsdc, etherscanLogsUsdt] = await Promise.all([
+    etherscanEndpoints.fetchErc20TransactionForAddress('usdc', process.env.ADDRESS_USDC),
+    etherscanEndpoints.fetchErc20TransactionForAddress('usdt', process.env.ADDRESS_USDT),
+    etherscanEndpoints.fetchLogsForAddress(process.env.ADDRESS_USDC),
+    etherscanEndpoints.fetchLogsForAddress(process.env.ADDRESS_USDT),
   ]);
 
-  console.log('Transactions USDC', transactionsUsdc);
-  console.log('Transactions USDT', transactionsUsdt);
-  console.log('Logs USDC', logsUsdc);
-  console.log('Logs USDT', logsUsdt);
+  console.log('Etherscan Transactions USDC', etherscanTransactionsUsdc);
+  console.log('Etherscan Transactions USDT', etherscanTransactionsUsdt);
+  console.log('Etherscan Logs USDC', etherscanLogsUsdc);
+  console.log('Etherscan Logs USDT', etherscanLogsUsdt);
+
+  const [polygonscanTransactionsUsdc, polygonscanTransactionsUsdt, polygonscanLogsUsdc, polygonscanLogsUsdt] = await Promise.all([
+    polygonscanEndpoints.fetchErc20TransactionForAddress('usdc', process.env.ADDRESS_USDC),
+    polygonscanEndpoints.fetchErc20TransactionForAddress('usdt', process.env.ADDRESS_USDT),
+    polygonscanEndpoints.fetchLogsForAddress(process.env.ADDRESS_USDC),
+    polygonscanEndpoints.fetchLogsForAddress(process.env.ADDRESS_USDT),
+  ]);
+
+  console.log('Polygonscan Transactions USDC', polygonscanTransactionsUsdc);
+  console.log('Polygonscan Transactions USDT', polygonscanTransactionsUsdt);
+  console.log('Polygonscan Logs USDC', polygonscanLogsUsdc);
+  console.log('Polygonscan Logs USDT', polygonscanLogsUsdt);
 
   return {
     statusCode: 200,
