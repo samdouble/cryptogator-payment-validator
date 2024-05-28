@@ -1,6 +1,6 @@
 import { Context, APIGatewayProxyResult, APIGatewayEvent } from 'aws-lambda';
-import etherscanEndpoints from './etherscan';
-import polygonscanEndpoints from './polygonscan';
+import etherscanEndpoints from './ethereum/endpoints';
+import polygonscanEndpoints from './polygon/endpoints';
 
 export const handler = async (event: APIGatewayEvent, context: Context): Promise<APIGatewayProxyResult> => {
   const [etherscanTransactionsUsdc, etherscanTransactionsUsdt, etherscanLogsUsdc, etherscanLogsUsdt] = await Promise.all([
@@ -15,16 +15,12 @@ export const handler = async (event: APIGatewayEvent, context: Context): Promise
   console.log('Etherscan Logs USDC', etherscanLogsUsdc);
   console.log('Etherscan Logs USDT', etherscanLogsUsdt);
 
-  const [polygonscanTransactionsUsdc, polygonscanTransactionsUsdt, polygonscanLogsUsdc, polygonscanLogsUsdt] = await Promise.all([
-    polygonscanEndpoints.fetchErc20TransactionForAddress('usdc', process.env.ADDRESS_USDC),
+  const [polygonscanTransactionsUsdt, polygonscanLogsUsdt] = await Promise.all([
     polygonscanEndpoints.fetchErc20TransactionForAddress('usdt', process.env.ADDRESS_USDT),
-    polygonscanEndpoints.fetchLogsForAddress(process.env.ADDRESS_USDC),
     polygonscanEndpoints.fetchLogsForAddress(process.env.ADDRESS_USDT),
   ]);
 
-  console.log('Polygonscan Transactions USDC', polygonscanTransactionsUsdc);
   console.log('Polygonscan Transactions USDT', polygonscanTransactionsUsdt);
-  console.log('Polygonscan Logs USDC', polygonscanLogsUsdc);
   console.log('Polygonscan Logs USDT', polygonscanLogsUsdt);
 
   return {
