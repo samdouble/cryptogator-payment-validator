@@ -32,6 +32,12 @@ export const fetchErc20TransactionForAddress = async (erc20Token, address, filte
   return ApiClient
     .get(`${process.env.POLYGONSCAN_API_SERVER}/api${query && `?${query}`}`)
     .then((res: any) => res.data)
+    .then(data => {
+      if (!['0', '1'].includes(data.status)) {
+        throw new Error('Error', data.message);
+      }
+      return data.result;
+    })
     .catch(error => console.error(`Fetch events error ${error}`));
 }
 
@@ -52,6 +58,12 @@ export const fetchLogsForAddress = async (address, filter = {}) => {
   return ApiClient
     .get(`${process.env.POLYGONSCAN_API_SERVER}/api${query && `?${query}`}`)
     .then((res: any) => res.data)
+    .then(data => {
+      if (!['0', '1'].includes(data.status)) {
+        throw new Error('Error', data.message);
+      }
+      return data.result;
+    })
     .catch(error => console.error(`Fetch events error ${error}`));
 }
 

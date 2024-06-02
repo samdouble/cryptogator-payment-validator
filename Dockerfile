@@ -1,4 +1,4 @@
-FROM amazon/aws-lambda-nodejs:18
+FROM amazon/aws-lambda-nodejs:20
 
 ARG FUNCTION_DIR="/var/task"
 RUN mkdir -p ${FUNCTION_DIR}
