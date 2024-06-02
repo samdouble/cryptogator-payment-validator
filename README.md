@@ -5,7 +5,7 @@ A script designed to check crypto payments on the Ethereum blockchain.
 ## Technologies & Languages
 
 - TypeScript
-- Puppeteer
+- Blockchain (Ethereum, Polygon)
 - AWS ECR
 - AWS Lambda
 - CircleCI
