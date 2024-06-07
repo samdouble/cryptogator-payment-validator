@@ -15,7 +15,7 @@ const schema = Joi.object().keys({
 export default async function (runInfo, options: { session?: any } = {}) {
   const validation = schema.validate(runInfo, { stripUnknown: true });
   if (validation.error) {
-    throw new Error(`Invalid request: ${validation}`);
+    throw new Error(`Invalid request: ${validation.error}`);
   }
   const validatedRun = validation.value;
 
