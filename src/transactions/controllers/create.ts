@@ -28,7 +28,7 @@ const schema = Joi.object().keys({
 export default async function (transactionInfo, options: { session?: any } = {}) {
   const validation = schema.validate(transactionInfo, { stripUnknown: true });
   if (validation.error) {
-    throw new Error(`Invalid request: ${validation}`);
+    throw new Error(`Invalid request: ${validation.error}`);
   }
   const validatedTransaction = validation.value;
 
