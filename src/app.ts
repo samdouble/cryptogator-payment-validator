@@ -43,7 +43,7 @@ export const handler = async (event: APIGatewayEvent, context: Context): Promise
   for (const polygonscanTransaction of polygonscanTransactionsUsdt) {
     const tokenDecimal = parseInt(polygonscanTransaction.tokenDecimal, 10);
     await createTransaction({
-      blockchain: 'Ethereum',
+      blockchain: 'Polygon',
       blockNumber: parseInt(polygonscanTransaction.blockNumber, 10),
       timestamp: 1000 * parseInt(polygonscanTransaction.timeStamp, 10),
       date: DateTime.fromMillis(1000 * parseInt(polygonscanTransaction.timeStamp, 10)).toUTC().toJSDate(),
