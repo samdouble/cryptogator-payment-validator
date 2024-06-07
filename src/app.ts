@@ -15,7 +15,7 @@ export const handler = async (event: APIGatewayEvent, context: Context): Promise
   ]);
   for (const etherscanTransaction of [...etherscanTransactionsUsdc, etherscanTransactionsUsdt]) {
     const tokenDecimal = parseInt(etherscanTransaction.tokenDecimal, 10);
-    console.log(etherscanTransaction.blockNumber, parseInt(etherscanTransaction.blockNumber, 10));
+    console.log(etherscanTransaction);
     await createTransaction({
       blockchain: 'Ethereum',
       blockNumber: parseInt(etherscanTransaction.blockNumber, 10),
@@ -43,7 +43,7 @@ export const handler = async (event: APIGatewayEvent, context: Context): Promise
   const polygonscanTransactionsUsdt = await polygonscanEndpoints.fetchErc20TransactionForAddress('usdt', process.env.ADDRESS_USDT);
   for (const polygonscanTransaction of polygonscanTransactionsUsdt) {
     const tokenDecimal = parseInt(polygonscanTransaction.tokenDecimal, 10);
-    console.log(polygonscanTransaction.blockNumber, parseInt(polygonscanTransaction.blockNumber, 10));
+    console.log(polygonscanTransaction.blockNumber);
     await createTransaction({
       blockchain: 'Ethereum',
       blockNumber: parseInt(polygonscanTransaction.blockNumber, 10),
