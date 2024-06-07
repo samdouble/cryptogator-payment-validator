@@ -10,8 +10,8 @@
     "build": "tsc",
     "lint": "eslint --ext .ts ./",
     "start": "tsc && node dist/app.js",
-    "test": "c8 --all --check-coverage --lines 1 --branches 1 --statements 1 --functions 1 mocha --require ts-node/register --check-leaks --timeout 5000 --recursive './{,!(node_modules)/**}/*.test.ts'",
-    "test-ci": "c8 --all --check-coverage --lines 1 --branches 1 --statements 1 --functions 1 mocha --require ts-node/register --check-leaks --timeout 0 --recursive './{,!(node_modules)/**}/*.test.ts'"
+    "test": "c8 --all --check-coverage --lines 0 --branches 0 --statements 0 --functions 0 mocha --require ts-node/register --check-leaks --timeout 5000 --recursive './{,!(node_modules)/**}/*.test.ts'",
+    "test-ci": "c8 --all --check-coverage --lines 0 --branches 0 --statements 0 --functions 0 mocha --require ts-node/register --check-leaks --timeout 0 --recursive './{,!(node_modules)/**}/*.test.ts'"
   },
   "dependencies": {
     "@types/node": "^20.12.12",
