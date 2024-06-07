@@ -1,6 +1,5 @@
 import { Schema, model } from 'mongoose';
 import omit from 'lodash.omit';
-import { DateTime } from 'luxon';
 import { v4 as uuidv4 } from 'uuid';
 
 const COLLECTION_NAME = 'transactions';
