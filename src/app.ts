@@ -6,9 +6,6 @@ import etherscanEndpoints from './utils/ethereum/endpoints';
 import polygonscanEndpoints from './utils/polygon/endpoints';
 import solanafmEndpoints from './utils/solana/endpoints';
 
-0x949fb7884a9B74Fd9F70aa49512fAfe096d2bc53
-
-
 export const handler = async (event: APIGatewayEvent, context: Context): Promise<APIGatewayProxyResult> => {
   await connect(process.env.MONGODB_URL!);
 
