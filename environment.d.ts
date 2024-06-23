@@ -8,6 +8,8 @@ declare global {
       NODE_ENV: 'development' | 'production';
       POLYGONSCAN_API_SERVER: string;
       POLYGONSCAN_API_TOKEN: string;
+      SOLANAFM_API_SERVER: string;
+      SOLANAFM_API_TOKEN: string;
     }
   }
 }

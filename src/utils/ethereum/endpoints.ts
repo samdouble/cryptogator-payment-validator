@@ -13,13 +13,13 @@ const ApiClient = axios.create({
   withCredentials: true,
 });
 
-export const fetchErc20TransactionForAddress = async (erc20Token, address, filter = {}) => {
+export const fetchErc20TransactionsForAddress = async (token, address, filter = {}) => {
   const filterWithCredentials = {
     ...filter,
     apikey: process.env.ETHERSCAN_API_TOKEN,
     module: 'account',
     action: 'tokentx',
-    contractaddress: contractAddresses[erc20Token],
+    contractaddress: contractAddresses[token],
     address,
     // page:
     // offset:
@@ -38,7 +38,7 @@ export const fetchErc20TransactionForAddress = async (erc20Token, address, filte
       }
       return data.result;
     })
-    .catch(error => console.error(`Fetch events error ${error}`));
+    .catch(error => console.error(`Fetch transactions error ${error}`));
 }
 
 export const fetchLogsForAddress = async (address, filter = {}) => {
@@ -68,6 +68,6 @@ export const fetchLogsForAddress = async (address, filter = {}) => {
 }
 
 export default {
-  fetchErc20TransactionForAddress,
+  fetchErc20TransactionsForAddress,
   fetchLogsForAddress,
 }
