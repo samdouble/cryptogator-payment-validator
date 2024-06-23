@@ -73,11 +73,10 @@ export const handler = async (event: APIGatewayEvent, context: Context): Promise
   }
 
   // Solana
-  const [solanafmTransactionsUsdc, solanafmTransactionsUsdt] = await Promise.all([
-    solanafmEndpoints.fetchTransactionsForAddress('usdc', process.env.ADDRESS_USDC),
-    solanafmEndpoints.fetchTransactionsForAddress('usdt', process.env.ADDRESS_USDT),
+  const [solanafmTransactions] = await Promise.all([
+    solanafmEndpoints.fetchTransactionsForAddress('usdt', '6K4qRakuuSF2ZszWANL2FzN1JrdbFywCPEH2hb7rf4NP'),
   ]);
-  for (const solanafmTransaction of [...solanafmTransactionsUsdc, ...solanafmTransactionsUsdt]) {
+  for (const solanafmTransaction of solanafmTransactions) {
     console.log('SOL', solanafmTransaction);
     const tokenDecimal = parseInt(solanafmTransaction.tokenDecimal, 10);
     /*await createTransaction({
