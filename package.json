@@ -14,6 +14,7 @@
     "test-ci": "c8 --all --check-coverage --lines 0 --branches 0 --statements 0 --functions 0 mocha --require ts-node/register --check-leaks --timeout 0 --recursive './{,!(node_modules)/**}/*.test.ts'"
   },
   "dependencies": {
+    "@api/solanafm": "file:.api/apis/solanafm",
     "@types/node": "^20.12.12",
     "axios": "^1.7.2",
     "joi": "^17.13.1",
