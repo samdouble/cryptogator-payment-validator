@@ -14,7 +14,6 @@ export const handler = async (event: APIGatewayEvent, context: Context): Promise
     etherscanEndpoints.fetchErc20TransactionsForAddress('usdc', process.env.ADDRESS_USDC),
     etherscanEndpoints.fetchErc20TransactionsForAddress('usdt', process.env.ADDRESS_USDT),
   ]);
-  console.log(etherscanTransactionsUsdc, typeof etherscanTransactionsUsdc);
   for (const etherscanTransaction of [...etherscanTransactionsUsdc, ...etherscanTransactionsUsdt]) {
     const tokenDecimal = parseInt(etherscanTransaction.tokenDecimal, 10);
     console.log('ETH', etherscanTransaction);
@@ -48,7 +47,6 @@ export const handler = async (event: APIGatewayEvent, context: Context): Promise
   ]);
   for (const polygonscanTransaction of [...polygonscanTransactionsUsdc, ...polygonscanTransactionsUsdt]) {
     const tokenDecimal = parseInt(polygonscanTransaction.tokenDecimal, 10);
-    console.log('MATIC', polygonscanTransaction);
     await createTransaction({
       blockchain: 'Polygon',
       blockNumber: parseInt(polygonscanTransaction.blockNumber, 10),
@@ -76,6 +74,7 @@ export const handler = async (event: APIGatewayEvent, context: Context): Promise
   const [solanafmTransactions] = await Promise.all([
     solanafmEndpoints.fetchTransactionsForAddress('usdt', '6K4qRakuuSF2ZszWANL2FzN1JrdbFywCPEH2hb7rf4NP'),
   ]);
+  console.log(solanafmTransactions, typeof solanafmTransactions);
   for (const solanafmTransaction of solanafmTransactions) {
     console.log('SOL', solanafmTransaction);
     const tokenDecimal = parseInt(solanafmTransaction.tokenDecimal, 10);
