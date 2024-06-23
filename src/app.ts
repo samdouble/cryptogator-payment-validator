@@ -14,6 +14,7 @@ export const handler = async (event: APIGatewayEvent, context: Context): Promise
     etherscanEndpoints.fetchErc20TransactionsForAddress('usdc', process.env.ADDRESS_USDC),
     etherscanEndpoints.fetchErc20TransactionsForAddress('usdt', process.env.ADDRESS_USDT),
   ]);
+  console.log(etherscanTransactionsUsdc, typeof etherscanTransactionsUsdc);
   for (const etherscanTransaction of [...etherscanTransactionsUsdc, ...etherscanTransactionsUsdt]) {
     const tokenDecimal = parseInt(etherscanTransaction.tokenDecimal, 10);
     console.log('ETH', etherscanTransaction);
