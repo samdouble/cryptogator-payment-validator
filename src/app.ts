@@ -6,6 +6,9 @@ import etherscanEndpoints from './utils/ethereum/endpoints';
 import polygonscanEndpoints from './utils/polygon/endpoints';
 import solanafmEndpoints from './utils/solana/endpoints';
 
+0x949fb7884a9B74Fd9F70aa49512fAfe096d2bc53
+
+
 export const handler = async (event: APIGatewayEvent, context: Context): Promise<APIGatewayProxyResult> => {
   await connect(process.env.MONGODB_URL!);
 
@@ -16,6 +19,7 @@ export const handler = async (event: APIGatewayEvent, context: Context): Promise
   ]);
   for (const etherscanTransaction of [...etherscanTransactionsUsdc, ...etherscanTransactionsUsdt]) {
     const tokenDecimal = parseInt(etherscanTransaction.tokenDecimal, 10);
+    console.log('ETH', etherscanTransaction);
     await createTransaction({
       blockchain: 'Ethereum',
       blockNumber: parseInt(etherscanTransaction.blockNumber, 10),
@@ -46,6 +50,7 @@ export const handler = async (event: APIGatewayEvent, context: Context): Promise
   ]);
   for (const polygonscanTransaction of [...polygonscanTransactionsUsdc, ...polygonscanTransactionsUsdt]) {
     const tokenDecimal = parseInt(polygonscanTransaction.tokenDecimal, 10);
+    console.log('MATIC', polygonscanTransaction);
     await createTransaction({
       blockchain: 'Polygon',
       blockNumber: parseInt(polygonscanTransaction.blockNumber, 10),
@@ -75,9 +80,9 @@ export const handler = async (event: APIGatewayEvent, context: Context): Promise
     solanafmEndpoints.fetchTransactionsForAddress('usdt', process.env.ADDRESS_USDT),
   ]);
   for (const solanafmTransaction of [...solanafmTransactionsUsdc, ...solanafmTransactionsUsdt]) {
-    console.log(solanafmTransaction);
+    console.log('SOL', solanafmTransaction);
     const tokenDecimal = parseInt(solanafmTransaction.tokenDecimal, 10);
-    await createTransaction({
+    /*await createTransaction({
       blockchain: 'Solana',
       blockNumber: parseInt(solanafmTransaction.blockNumber, 10),
       timestamp: 1000 * parseInt(solanafmTransaction.timeStamp, 10),
@@ -97,7 +102,7 @@ export const handler = async (event: APIGatewayEvent, context: Context): Promise
       gasUsed: parseInt(solanafmTransaction.gasUsed, 10) * Math.pow(10, -tokenDecimal),
       cumulativeGasUsed: parseInt(solanafmTransaction.cumulativeGasUsed, 10) * Math.pow(10, -tokenDecimal),
       nbConfirmations: parseInt(solanafmTransaction.confirmations, 10),
-    });
+    });*/
   }
 
   await disconnect();
