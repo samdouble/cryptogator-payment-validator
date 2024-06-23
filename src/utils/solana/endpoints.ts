@@ -25,6 +25,7 @@ export const fetchTransactionsForAddress = async (token, hash, filter = {}) => {
   };
 
   const query = filterWithCredentials && queryString.stringify(filterWithCredentials);
+  console.log(query);
   return ApiClient
     .get(`${process.env.SOLANAFM_API_TOKEN}/v0/accounts/${hash}/transactions${query && `?${query}`}`)
     .then((res: any) => res.data)
