@@ -72,7 +72,7 @@ export const handler = async (event: APIGatewayEvent, context: Context): Promise
 
   // Solana
   const [solanafmTransactions] = await Promise.all([
-    solanafmEndpoints.fetchTransactionsForAddress('usdt', '6K4qRakuuSF2ZszWANL2FzN1JrdbFywCPEH2hb7rf4NP'),
+    solanafmEndpoints.fetchTransactionsForAddress('usdt', '7gEQ6syDZmyPE4JdfJm4qatawnDqvqdh6i8jJjCXio6h'),
   ]);
   console.log(solanafmTransactions, typeof solanafmTransactions);
   for (const solanafmTransaction of solanafmTransactions) {
