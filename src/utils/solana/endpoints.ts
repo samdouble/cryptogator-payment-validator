@@ -21,18 +21,17 @@ export const fetchTransactionsForAddress = async (token, hash, filter = {}) => {
     ...filter,
     inflow: true,
     outflow: false,
-    page: 1,
   };
 
   const query = filterWithCredentials && queryString.stringify(filterWithCredentials);
   return ApiClient
-    .get(`${process.env.SOLANAFM_API_SERVER}/v0/accounts/${hash}/transactions${query && `?${query}`}`)
+    .get(`${process.env.SOLANAFM_API_SERVER}/v0/accounts/${hash}/transfers${query && `?${query}`}`)
     .then((res: any) => res.data)
     .then(data => {
       if (!['success'].includes(data.status)) {
         throw new Error('Error', data.message);
       }
-      return data.result;
+      return data.results;
     })
     .catch(error => console.error(`Fetch transactions error ${error}`));
 }

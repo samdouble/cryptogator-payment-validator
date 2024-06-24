@@ -13,6 +13,8 @@ export interface ITransaction {
   contractAddress: string;
   createdAt: Date;
   date: Date;
+  gas: number;
+  hash: string;
   modifiedAt: Date;
   receiver: string;
   sender: string;
@@ -30,6 +32,8 @@ const TransactionSchema: Schema = new Schema<ITransaction>(
     contractAddress: { type: String, required: true },
     createdAt: { type: Date, required: true },
     date: { type: Date, required: true },
+    gas: { type: Number, required: true },
+    hash: { type: String, required: true },
     modifiedAt: { type: Date, required: true },
     receiver: { type: String, required: true },
     sender: { type: String, required: true },
