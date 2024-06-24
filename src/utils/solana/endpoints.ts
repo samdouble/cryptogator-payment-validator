@@ -25,12 +25,12 @@ export const fetchTransactionsForAddress = async (token, hash, filter = {}) => {
   };
 
   const query = filterWithCredentials && queryString.stringify(filterWithCredentials);
-  console.log(`${process.env.SOLANAFM_API_TOKEN}/v0/accounts/${hash}/transactions${query && `?${query}`}`, {
+  console.log(`${process.env.SOLANAFM_API_SERVER}/v0/accounts/${hash}/transactions${query && `?${query}`}`, {
     accept: 'application/json',
     ApiKey: process.env.SOLANAFM_API_TOKEN,
   });
   return ApiClient
-    .get(`${process.env.SOLANAFM_API_TOKEN}/v0/accounts/${hash}/transactions${query && `?${query}`}`)
+    .get(`${process.env.SOLANAFM_API_SERVER}/v0/accounts/${hash}/transactions${query && `?${query}`}`)
     .then((res: any) => res.data)
     .then(data => {
       if (!['success'].includes(data.status)) {
