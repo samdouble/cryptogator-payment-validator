@@ -14,10 +14,10 @@ jobs:
     steps:
       - name: Login to Docker Hub
         env:
-          AWS_ECR_URL: ${{ secrets.AWS_ECR_URL }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-          FUNCTION_NAME: ${{ secrets.FUNCTION_NAME }}
-          IMAGE_URL: ${{ secrets.IMAGE_URL }}
+          AWS_ECR_URL: ${{ vars.AWS_ECR_URL }}
+          AWS_REGION: ${{ vars.AWS_REGION }}
+          FUNCTION_NAME: ${{ vars.FUNCTION_NAME }}
+          IMAGE_URL: ${{ vars.IMAGE_URL }}
         run: |
           aws ecr get-login-password --region ${ AWS_REGION } | docker login --username AWS --password-stdin ${ AWS_ECR_URL }
           docker build -t ${ IMAGE_URL }:latest -t ${ IMAGE_URL }:${{ github.ref_name }} .
