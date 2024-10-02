@@ -19,7 +19,7 @@ jobs:
           FUNCTION_NAME: ${{ vars.FUNCTION_NAME }}
           IMAGE_URL: ${{ vars.IMAGE_URL }}
         run: |
-          aws ecr get-login-password --region ${ AWS_REGION } | docker login --username AWS --password-stdin ${ AWS_ECR_URL }
-          docker build -t ${ IMAGE_URL }:latest -t ${ IMAGE_URL }:${{ github.ref_name }} .
+          aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${AWS_ECR_URL}
+          docker build -t ${IMAGE_URL}:latest -t ${IMAGE_URL}:${{ github.ref_name }} .
           docker push --all-tags
-          aws lambda update-function-code --region ${ AWS_REGION } --function-name ${ FUNCTION_NAME } --image-uri ${ IMAGE_URL }
+          aws lambda update-function-code --region ${AWS_REGION} --function-name ${FUNCTION_NAME} --image-uri ${IMAGE_URL}
