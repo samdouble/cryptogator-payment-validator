@@ -34,4 +34,4 @@ jobs:
           FUNCTION_NAME: ${{ vars.FUNCTION_NAME }}
           IMAGE_URL: ${{ vars.IMAGE_URL }}
         run: |
-          aws lambda update-function-code --region ${AWS_REGION} --function-name ${FUNCTION_NAME} --image-uri ${IMAGE_URL}
+          aws lambda update-function-code --region ${AWS_REGION} --function-name ${FUNCTION_NAME} --image-uri ${IMAGE_URL}:latest
