@@ -12,16 +12,26 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ vars.AWS_REGION }}
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+      - name: Build and push to Docker Hub
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: |
+            ${{IMAGE_URL}}:latest
+            ${{IMAGE_URL}}:${{ github.ref_name }}
       - name: Login to Docker Hub
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_ECR_URL: ${{ vars.AWS_ECR_URL }}
           AWS_REGION: ${{ vars.AWS_REGION }}
           FUNCTION_NAME: ${{ vars.FUNCTION_NAME }}
           IMAGE_URL: ${{ vars.IMAGE_URL }}
         run: |
-          aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${AWS_ECR_URL}
-          docker build -t ${IMAGE_URL}:latest -t ${IMAGE_URL}:${{ github.ref_name }} .
-          docker push --all-tags
           aws lambda update-function-code --region ${AWS_REGION} --function-name ${FUNCTION_NAME} --image-uri ${IMAGE_URL}
