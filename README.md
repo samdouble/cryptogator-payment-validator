@@ -1,5 +1,8 @@
 # cryptogator-payment-validator
 
+[![CI](https://github.com/samdouble/cryptogator-payment-validator/actions/workflows/checks.yml/badge.svg)](https://github.com/samdouble/cryptogator-payment-validator/actions/workflows/checks.yml)
+[![Coverage Status](https://coveralls.io/repos/samdouble/cryptogator-payment-validator/badge.svg?branch=master&service=github)](https://coveralls.io/github/samdouble/cryptogator-payment-validator?branch=master)
+
 A script designed to check crypto payments on the Ethereum blockchain.
 
 ## Technologies & Languages
@@ -25,9 +28,3 @@ Run the following command:
 npm install
 npm run test
 ```
-
-## Production
-
-1. Push your changes to any branch.
-2. CircleCI will build and push the Docker image to AWS ECR
-3. CircleCI will update the Lambda function that executes every few hours
