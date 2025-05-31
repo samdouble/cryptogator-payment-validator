@@ -1,7 +1,7 @@
 {
   "name": "cryptogator-payments-validator",
   "author": "samdouble",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CryptoGator's payments validator",
   "license": "ISC",
   "main": "src/app.ts",

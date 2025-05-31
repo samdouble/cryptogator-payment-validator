@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/samdouble/cryptogator-payment-validator/compare/v1.0.0...v1.0.1) (2025-05-31)
+
+
+### Bug Fixes
+
+* fixed deploy workflow ([1017a6f](https://github.com/samdouble/cryptogator-payment-validator/commit/1017a6f04c963e058f36343f71dc5342c4e00b87))
+
 ## 1.0.0 (2025-05-31)
 
 
