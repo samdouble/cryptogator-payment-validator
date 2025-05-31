@@ -7,7 +7,7 @@ import polygonscanEndpoints from './utils/polygon/endpoints';
 import solanaContractAddresses from './utils/solana/contractAddresses';
 import solanafmEndpoints from './utils/solana/endpoints';
 
-export const handler = async (event: APIGatewayEvent, context: Context): Promise<APIGatewayProxyResult> => {
+export const handler = async (_event: APIGatewayEvent, _context: Context): Promise<APIGatewayProxyResult> => {
   await connect(process.env.MONGODB_URL!);
 
   // Ethereum
